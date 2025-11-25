@@ -18,6 +18,9 @@ This sample creates a TPM key named "att_sample_key" which is attested by Micros
 This sample provides the code implementation to perform VBS-Protected key attestation and retrieve an attestation token from Microsoft Azure Attestation.
 This sample creates a VBS-Protected key named "att_sample_key" which is attested by Microsoft Azure Attestation. The sample must be run with Virtualization-Based Security enabled on the device. 
 
+WARNING: Information regarding VBS-Protected Keys relates to prerelease product that may be substantially modified before it's commercially released. 
+Microsoft makes no warranties, express or implied, with respect to the information provided here.
+
 ### **VBS enclave attestation (sample_enclave_att.exe)**
 
 This sample provides the code implementation to perform VBS enclave attestation and retrieve an attestation token from Microsoft Azure Attestation. A sample enclave is provided in the "enclave" directory. 

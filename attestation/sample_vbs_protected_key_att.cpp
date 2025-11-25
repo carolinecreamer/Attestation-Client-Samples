@@ -3,7 +3,12 @@
 //
 
 /**
- * @brief This sample provides the code implementation to perform VBS NCrypt (Key Guard) key attestation,
+ * WARNING: Information regarding VBS-Protected Keys relates to prerelease product that may be substantially modified before it's commercially released. 
+ * Microsoft makes no warranties, express or implied, with respect to the information provided here.
+ */
+
+/**
+ * @brief This sample provides the code implementation to perform VBS-Protected key attestation,
  * and retrieve an attestation token from Microsoft Azure Attestation.
  *
  * @remark The following environment variables must be set before running the sample.
@@ -71,9 +76,11 @@ int main()
     }
 
     return 0;
-}
 
-//
-// Notice that report will contain claim "x-ms-tpm-request-key", which includes the public part of the TPM key in the "jwk" field.
-// In addition, field "info" will contains "vbs_ncrypt" indicating that a VBS-Protected key was certified. The fields inside "vbs_ncrypt" attest to the VBS-protected key properties.
-//
+    //
+    // Notice that report will contain claim "x-ms-tpm-request-key", which includes the public part of the TPM key in the "jwk" field.
+    // In addition, field "info" will contains "vbs_ncrypt" indicating that a VBS-Protected key was certified. The fields inside "vbs_ncrypt" attest to the VBS-protected key properties.
+    // Those properties are described in the NCrypt libraries documentation (https://learn.microsoft.com/en-us/windows/win32/api/ncrypt/nf-ncrypt-ncryptverifyclaim#protectingattesting-private-keys-using-virtualization-based-security-vbs).
+    // For example, a relying party can verify that the key is VBS-backed (see "isolated_key_attributes.flags").
+    //
+}
