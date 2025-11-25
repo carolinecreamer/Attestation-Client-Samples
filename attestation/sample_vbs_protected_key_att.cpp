@@ -78,9 +78,9 @@ int main()
     return 0;
 
     //
-    // Notice that report will contain claim "x-ms-tpm-request-key", which includes the public part of the TPM key in the "jwk" field.
-    // In addition, field "info" will contains "vbs_ncrypt" indicating that a VBS-Protected key was certified. The fields inside "vbs_ncrypt" attest to the VBS-protected key properties.
-    // Those properties are described in the NCrypt libraries documentation (https://learn.microsoft.com/en-us/windows/win32/api/ncrypt/nf-ncrypt-ncryptverifyclaim#protectingattesting-private-keys-using-virtualization-based-security-vbs).
+    // Notice that the report will contain the claim "x-ms-tpm-request-key", which includes the public part of the VBS-protected key in the "jwk" field.
+    // In addition, the "info" section will contain "vbs_ncrypt", indicating that a VBS-protected key was certified. The fields inside "vbs_ncrypt" attest to the VBS-protected key properties.
+    // These properties are described in the NCrypt library documentation (https://learn.microsoft.com/en-us/windows/win32/api/ncrypt/nf-ncrypt-ncryptverifyclaim#protectingattesting-private-keys-using-virtualization-based-security-vbs).
     // For example, a relying party can verify that the key is VBS-backed (see "isolated_key_attributes.flags").
     //
 }
