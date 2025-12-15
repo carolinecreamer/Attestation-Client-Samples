@@ -52,7 +52,7 @@ int main()
     try
     {
         auto tpm_aik = load_tpm_key(AIK_NAME, true);
-        auto vbs_protected_key = create_vbs_protected_key(L"att_sample_key");
+        auto vbs_protected_key = create_vbs_protected_key(L"att_sample_vbs_key", false);
 
         att_tpm_aik aik = ATT_TPM_AIK_NCRYPT(tpm_aik.get());
         att_tpm_key key = ATT_TPM_KEY_VBS_NCRYPT(vbs_protected_key.get());
@@ -81,6 +81,17 @@ int main()
     // Notice that the report will contain the claim "x-ms-tpm-request-key", which includes the public part of the VBS-protected key in the "jwk" field.
     // In addition, the "info" section will contain "vbs_ncrypt", indicating that a VBS-protected key was certified. The fields inside "vbs_ncrypt" attest to the VBS-protected key properties.
     // These properties are described in the NCrypt library documentation (https://learn.microsoft.com/en-us/windows/win32/api/ncrypt/nf-ncrypt-ncryptverifyclaim#protectingattesting-private-keys-using-virtualization-based-security-vbs).
-    // For example, a relying party can verify that the key is VBS-backed (see "isolated_key_attributes.flags").
+    // A relying party (RP) should validate several important fields inside "vbs_ncrypt.vbs_trustlet_report" to ensure the key was generated and protected inside a trusted VBS-protected environment:
     //
-}
+    //   trustlet_identity – Identifies the VBS trustlet that created or protects the key. The RP should compare this value against an expected trustlet identity to ensure the key originates from a trusted environment.
+    //
+    //   trustlet_svn – The security version number (SVN) of the trustlet. The RP should verify this meets its minimum required SVN.
+    //
+    //   flags.trustlet_debugged – Indicates whether the trustlet was debugged during key creation or protection. RPs should reject keys where this value is true, as debugged trustlets cannot be trusted.
+    //
+    //   trustlet_policy – A set of policy entries describing protections applied to the trustlet. For example, policy entry ID=2 determines whether the trustlet is debuggable. RPs should verify policy values to verify that the trustlet meets its security requirements.
+    //
+    // These validations allow a relying party to establish that the key is genuinely VBS-backed, it comes from the correct trustlet that has sufficient security level, the environment was not debugged or weakened, and policy constraints match the RP’s requirements.
+    //
+
+    }
