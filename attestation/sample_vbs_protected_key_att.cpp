@@ -83,13 +83,13 @@ int main()
     // These properties are described in the NCrypt library documentation (https://learn.microsoft.com/en-us/windows/win32/api/ncrypt/nf-ncrypt-ncryptverifyclaim#protectingattesting-private-keys-using-virtualization-based-security-vbs).
     // A relying party (RP) should validate several important fields inside "vbs_ncrypt.vbs_trustlet_report" to ensure the key was generated and protected inside a trusted VBS-protected environment:
     //
-    //   trustlet_identity – Identifies the VBS trustlet that created or protects the key. The RP should compare this value against an expected trustlet identity to ensure the key originates from a trusted environment.
+    //   trustlet_identity - Identifies the VBS trustlet that created or protects the key. The RP should compare this value against an expected trustlet identity to ensure the key originates from a trusted environment.
     //
-    //   trustlet_svn – The security version number (SVN) of the trustlet. The RP should verify this meets its minimum required SVN.
+    //   trustlet_svn - The security version number (SVN) of the trustlet. The RP should verify this meets its minimum required SVN.
     //
-    //   flags.trustlet_debugged – Indicates whether the trustlet was debugged during key creation or protection. RPs should reject keys where this value is true, as debugged trustlets cannot be trusted.
+    //   flags.trustlet_debugged - Indicates whether the trustlet was debugged during key creation or protection. RPs should reject keys where this value is true, as debugged trustlets cannot be trusted.
     //
-    //   trustlet_policy – A set of policy entries describing protections applied to the trustlet. For example, policy entry ID=2 determines whether the trustlet is debuggable. RPs should verify policy values to verify that the trustlet meets its security requirements.
+    //   trustlet_policy - A set of policy entries describing protections applied to the trustlet. For example, policy entry ID=2 determines whether the trustlet is debuggable. RPs should verify policy values to verify that the trustlet meets its security requirements.
     //
     // These validations allow a relying party to establish that the key is genuinely VBS-backed, it comes from the correct trustlet that has sufficient security level, the environment was not debugged or weakened, and policy constraints match the RP’s requirements.
     //
