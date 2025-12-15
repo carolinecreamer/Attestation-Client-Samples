@@ -91,7 +91,7 @@ int main()
     //
     //   trustlet_policy - A set of policy entries describing protections applied to the trustlet. For example, policy entry ID=2 determines whether the trustlet is debuggable. RPs should verify policy values to verify that the trustlet meets its security requirements.
     //
-    // These validations allow a relying party to establish that the key is genuinely VBS-backed, it comes from the correct trustlet that has sufficient security level, the environment was not debugged or weakened, and policy constraints match the RP’s requirements.
+    // These validations allow a relying party to establish that the key is genuinely VBS-backed, it comes from the correct trustlet that has sufficient security level, the environment was not debugged or weakened, and policy constraints match the RP's requirements.
     //
 
     }
