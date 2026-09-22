@@ -33,7 +33,7 @@ set(SOURCE_FILES
 add_library(vbsenclave SHARED ${SOURCE_FILES})
 
 target_include_directories(vbsenclave PRIVATE
-    "${ATTEST_PACKAGE_DIR}/inc"
+    "${ATTEST_PACKAGE_DIR}/inc/${ATTEST_PACKAGE_ARCH}"
 )
 
 target_link_libraries(vbsenclave PRIVATE
@@ -42,7 +42,7 @@ target_link_libraries(vbsenclave PRIVATE
         "$ENV{WindowsSdkDir}Lib/$ENV{WindowsSDKLibVersion}um/${TARGET_ARCH}/bcrypt.lib"
         "$ENV{WindowsSdkDir}Lib/$ENV{WindowsSDKLibVersion}um/${TARGET_ARCH}/vertdll.lib"
         "$ENV{WindowsSdkDir}Lib/$ENV{WindowsSDKLibVersion}ucrt_enclave/${TARGET_ARCH}/ucrt.lib"
-        "${ATTEST_PACKAGE_DIR}/lib/AzureAttest.lib"
+        "${ATTEST_PACKAGE_DIR}/lib/${ATTEST_PACKAGE_ARCH}/AzureAttest.lib"
     )
 
 target_link_options(vbsenclave PRIVATE

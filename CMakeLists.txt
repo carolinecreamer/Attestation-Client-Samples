@@ -35,5 +35,12 @@ else()
     endif()
 endif()
 
+
+if(CMAKE_GENERATOR_PLATFORM MATCHES "ARM64|arm64" OR CMAKE_SYSTEM_PROCESSOR MATCHES "ARM64|arm64")
+    set(ATTEST_PACKAGE_ARCH "arm64" CACHE STRING "")
+else()
+    set(ATTEST_PACKAGE_ARCH "amd64" CACHE STRING "")
+endif()
+
 add_subdirectory(attestation)
 add_subdirectory(enclave)
